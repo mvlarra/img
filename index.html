@@ -1,0 +1,33 @@
+---
+# habilita Liquid/Jekyll en GitHub Pages
+---
+
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Images – mvlarra</title>
+<style>
+  body{font-family:system-ui,Segoe UI,Arial,sans-serif;margin:24px}
+  h1{margin:0 0 12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px}
+  .item{border:1px solid #e3e3e3;padding:10px;border-radius:12px;text-align:center}
+  .item img{max-width:100%;height:auto;display:block;margin:0 auto 6px}
+  .item a{font-size:12px;word-break:break-all;text-decoration:none;color:#333}
+</style>
+
+<h1>Repo images</h1>
+<p>Listado generado automáticamente (incluye subcarpetas).</p>
+
+<div class="grid">
+{% for file in site.static_files %}
+  {% assign ext = file.extname | downcase %}
+  {% if ext == ".png" or ext == ".svg" or ext == ".jpg" or ext == ".jpeg" or ext == ".gif" %}
+    <div class="item">
+      <a href="{{ file.path | relative_url }}" target="_blank" rel="noopener">
+        <img src="{{ file.path | relative_url }}" alt="{{ file.name }}">
+        {{ file.path }}
+      </a>
+    </div>
+  {% endif %}
+{% endfor %}
+</div>
